@@ -52,15 +52,22 @@ let attractions = {
         // console.log(length);
         let e = [];
         let prefix = [];
-        for(var i = 0;i<3;i++){
+        var i = 0;
+        while(i<3){
         const random = Math.floor(Math.random()*length);
         
         if(!prefix.includes(random)){
-            let div = `<div class="card place"><img class="placeImage" src=${results.data[random].photo.images.medium.url}>
-            <h3 class="placedet">${results.data[random].name}</h3><p>${results.data[random].address}</p></div>`;
+            let div = `<div class="card" style="width: 22rem;">
+            <img src=${results.data[random].photo.images.medium.url} class="card-img-top">
+            <div class="card-body">
+            <h5 class="card-title">${results.data[random].name}</h5>
+            <p class="card-text">${results.data[random].address}</p>
+            </div>
+            </div>`;
     
             e.push(div);
             prefix.push(random);
+            i++;
         }
 
         wrap.innerHTML = e;
@@ -115,3 +122,4 @@ document.querySelector(".search-bar").addEventListener("keyup",function(event){
 });
 
 weather.fetchWeather("Tokyo");
+
